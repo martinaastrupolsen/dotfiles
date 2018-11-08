@@ -21,7 +21,7 @@ cask 'emacs'
 cask 'firefox'
 cask 'google-chrome'
 cask 'iterm2'
-cask 'pycharm'
+cask 'pycharm-ce'
 cask 'slack'
 cask 'virtualbox'
 
