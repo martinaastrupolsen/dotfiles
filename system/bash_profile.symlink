@@ -4,7 +4,9 @@ eval "$(pyenv virtualenv-init -)"
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+export EDITOR=/usr/local/bin/emacs
 
 alias ll='ls -l'
 alias ls='ls -GFh'
 alias lsa='ls -lha'
+T
