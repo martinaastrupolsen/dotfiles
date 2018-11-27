@@ -1,0 +1,20 @@
+AWSHOST=$1
+
+# Kill any existing screens
+ssh $AWSHOST 'screen -D -RR aws-jupyter -X quit || true'
+ssh $AWSHOST 'screen -d -m -S aws-jupyter'
+ssh $AWSHOST 'screen -S aws-jupyter -X stuff "cd /home/ubuntu/git/spinaltap-reporting && jupyter notebook --no-browser --port=8887 2> .jupyterlog
+"'
+
+echo "Bringing up the Jupyter Notebook"
+sleep 5
+
+screen -D -RR aws-jupyter-loopback -X quit || true
+screen -d -m -S aws-jupyter-loopback
+screen -S aws-jupyter-loopback -X stuff "ssh -N -L 8887:localhost:8887 $AWSHOST"
+
+URL="$(ssh -q $AWSHOST 'cat /home/ubuntu/git/spinaltap-reporting/.jupyterlog | grep localhost | tail -n 1 | tr -d [:blank:]')"
+echo $URL | pbcopy
+echo "Connect to the Jupyter Notebook using (also available in clipboard):"
+echo "    $URL"
+
