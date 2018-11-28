@@ -19,6 +19,7 @@ brew 'zsh'
 brew 'zsh-completions'
 
 cask '1password'
+cask 'docker'
 cask 'firefox'
 cask 'google-chrome'
 cask 'iterm2'
