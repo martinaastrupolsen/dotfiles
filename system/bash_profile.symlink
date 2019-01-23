@@ -1,12 +1,23 @@
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+export WORKON_HOME=~/.pyenv
+source /Users/mao/.pyenv/versions/3.6.6/bin/virtualenvwrapper.sh
+# Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+export PROJECT_HOME=~/git/
+
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h\[\033[m\]\$ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 export EDITOR=/usr/local/bin/emacs
 
+# Prefix source prompt with virtualenvwrapper environment
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+eval "$(pyenv virtualenv-init -)"
+
 alias ll='ls -l'
 alias ls='ls -GFh'
 alias lsa='ls -lha'
-T
+
