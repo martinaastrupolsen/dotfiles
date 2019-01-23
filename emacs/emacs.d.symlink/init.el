@@ -31,6 +31,10 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 (load-theme 'material t) ;; load material theme
 (global-linum-mode t) ;; enable line numbers globally
+(setq-default indent-tabs-mode nil) ;; No tabs thanks
+(setq-default show-trailing-whitespace t)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+(setq-default fill-column 80)
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
