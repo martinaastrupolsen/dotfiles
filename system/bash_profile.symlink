@@ -17,6 +17,9 @@ export EDITOR=/usr/local/bin/emacs
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 eval "$(pyenv virtualenv-init -)"
 
+# Bash completion
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
+
 alias ll='ls -l'
 alias ls='ls -GFh'
 alias lsa='ls -lha'

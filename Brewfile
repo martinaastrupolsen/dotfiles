@@ -6,6 +6,7 @@ tap 'homebrew/bundle'
 
 brew 'ack'
 brew 'awscli'
+brew 'bash-completion'
 brew 'boost'
 brew 'circleci'
 brew 'coreutils'
