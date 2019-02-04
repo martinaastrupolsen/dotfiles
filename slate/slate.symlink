@@ -70,6 +70,9 @@ bind m:${hyper} ${righttwothird}
 bind s:${hyper} throw next
 bind z:${hyper} undo
 
+bind right:${hyper} throw 1 resize
+bind left:${hyper} throw 0 resize
+
 # App bindings
 bind e:${hyper} focus 'PyCharm'
 bind w:${hyper} focus 'Google Chrome'
