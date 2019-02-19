@@ -37,5 +37,6 @@ cask 'pycharm-ce'
 cask 'slack'
 cask 'slate'
 cask 'sequel-pro'
+cask 'sublime-text'
 cask 'virtualbox'
 
