@@ -37,6 +37,12 @@
 (setq-default fill-column 80)
 (setq column-number-mode t)
 
+;; MACOSX KEYS
+;; --------------------------------------
+(setq mac-command-modifier 'meta
+      mac-option-modifier 'none
+      default-input-method "MacOSX")
+
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
 
