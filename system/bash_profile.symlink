@@ -24,3 +24,4 @@ alias ll='ls -l'
 alias ls='ls -GFh'
 alias lsa='ls -lha'
 
+source ~/.bash_profile_secrets
