@@ -18,14 +18,14 @@ config switchBackgroundColor 50;53;58;0.7
 config switchSelectedPadding 4
 config switchIconSize 96
 config switchShowTitles true
-config switchFontSize 11  
+config switchFontSize 11
 config switchRoundedCornerSize 4
 config undoOps move,resize
 
 # ======================================
 # The HYPER key (bound using PCKeyboardHack and KeyRemap4Macbook)
 # ======================================
- 
+
 alias hyper ctrl;shift;alt;cmd
 
 bind space:${hyper} hint ASDFGHJKLQWERTYUIOPCVBN # use whatever keys you want
@@ -74,9 +74,7 @@ bind right:${hyper} throw 1 resize
 bind left:${hyper} throw 0 resize
 
 # App bindings
-bind e:${hyper} focus 'PyCharm'
 bind w:${hyper} focus 'Google Chrome'
 bind t:${hyper} focus 'iTerm2'
 bind c:${hyper} focus 'Slack'
-bind g:${hyper} focus 'Emacs'
-bind z:${hyper} focus 'Zotero'
+bind e:${hyper} focus 'Emacs'
