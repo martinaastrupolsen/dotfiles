@@ -18,6 +18,7 @@
     ein
     elpy
     flycheck
+    magit
     material-theme
     py-autopep8))
 
@@ -56,6 +57,17 @@
 ;; enable autopep8 formatting on save
 (require 'py-autopep8)
 (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+
+;; key bindings
+(when (eq system-type 'darwin) ;; mac specific settings
+  (setq mac-option-modifier 'alt)
+  (setq mac-command-modifier 'meta)
+  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+  )
+
+;; MAGIT CONFIGURATION
+(global-set-key (kbd "C-x g") 'magit-status)
+(global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
 ;; init.el ends here
 (custom-set-variables
