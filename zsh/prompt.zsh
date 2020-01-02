@@ -61,7 +61,14 @@ battery_status() {
   fi
 }
 
-export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+python_env() {
+  if which pyenv > /dev/null
+  then
+    eval "$(pyenv init -)"
+  fi
+}
+
+export PROMPT=$'\n$(python_env)$(directory_name) $(git_dirty)$(need_push)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
