@@ -1,12 +1,16 @@
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+export LDFLAGS="${LDFLAGS} -L/usr/local/opt/zlib/lib"
+export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="${PKG_CONFIG_PATH} /usr/local/opt/zlib/lib/pkgconfig"
+
 export WORKON_HOME=~/.pyenv
-source /Users/mao/.pyenv/versions/3.6.9/bin/virtualenvwrapper.sh
 # Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-
+export WORKON_HOME=~/.pyenv
 export PROJECT_HOME=~/git/
+pyenv virtualenvwrapper_lazy
 
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h\[\033[m\]\$ "
 export CLICOLOR=1
