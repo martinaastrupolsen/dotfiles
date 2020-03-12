@@ -63,3 +63,5 @@ export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 export WORKON_HOME=~/.pyenv
 export PROJECT_HOME=~/git/
 pyenv virtualenvwrapper_lazy
+
+ZSH_THEME="robbyrussell"
