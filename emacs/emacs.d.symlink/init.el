@@ -1,5 +1,7 @@
-
 ;; init.el --- Emacs configuration
+;; Inspired by
+;; - https://github.com/nilsdeppe/MyEnvironment/blob/master/.emacs.el
+;; and others
 
 ;; INSTALL PACKAGES
 ;; --------------------------------------
@@ -7,7 +9,9 @@
 (require 'package)
 
 (add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/") t)
+	     '("melpa" . "http://melpa.org/packages/") t)
+(add-to-list 'package-archives
+	     '("gnu" . "http://elpa.gnu.org/packages/") t)
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -20,12 +24,18 @@
     flycheck
     magit
     material-theme
-    py-autopep8))
+    use-package
+    py-autopep8
+    rustic))
 
 (mapc #'(lambda (package)
     (unless (package-installed-p package)
+      (package-refresh-contents)
       (package-install package)))
       myPackages)
+
+;; Extra plugins and config files are stored here
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/plugins"))
 
 ;; BASIC CUSTOMIZATION
 ;; --------------------------------------
@@ -38,6 +48,13 @@
 (add-hook 'text-mode-hook 'auto-fill-mode)
 (setq-default fill-column 80)
 (setq column-number-mode t)
+(remove-hook 'org-mode-hook #'auto-fill-mode)
+(show-paren-mode t) ;; Highlight matching parens
+(setq make-backup-files nil) ;; Don't make backup files
+(setq auto-save-default nil) ;; No need for auto saver
+(setq-default case-fold-search t ;; Case insensitive searches by default
+              search-highlight t) ;; Highlight matches when searching
+(setq ring-bell-function 'ignore) ;; No bells
 
 ;; PYTHON CONFIGURATION
 ;; --------------------------------------
@@ -69,6 +86,30 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Additional plugins
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(if (not (file-directory-p "~/.emacs.d/plugins"))
+    (make-directory "~/.emacs.d/plugins"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; protobuf-mode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(if (not (file-exists-p "~/.emacs.d/plugins/protobuf-mode.el"))
+    (url-copy-file
+     "https://raw.githubusercontent.com/google/protobuf/master/editors/protobuf-mode.el"
+     "~/.emacs.d/plugins/protobuf-mode.el"))
+(if (file-exists-p "~/.emacs.d/plugins/protobuf-mode.el")
+    (use-package protobuf-mode
+      :mode ("\\.proto")
+      )
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rust
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(use-package rustic)
+
 ;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -77,10 +118,9 @@
  ;; If there is more than one, they won't work right.
  '(linum-delay t)
  '(linum-eager nil)
- '(org-export-backends (quote (ascii html icalendar latex md odt)))
+ '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   (quote
-    (py-autopep8 material-theme flycheck elpy ein better-defaults))))
+   '(lsp-mode gnu-elpa-keyring-update py-autopep8 material-theme flycheck elpy ein better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

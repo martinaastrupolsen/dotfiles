@@ -29,3 +29,5 @@ alias ls='ls -GFh'
 alias lsa='ls -lha'
 
 source ~/.bash_profile_secrets
+
+export PATH="$HOME/.cargo/bin:$PATH"
